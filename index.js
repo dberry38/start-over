@@ -69,18 +69,54 @@ inquirer
             name: 'email',
         }
         
-// WHEN I click on the links in the Table of Contents
-// THEN I am taken to the corresponding section of the README
 
     ])
 
 .then((data) => {
-    const filename = `${data.proTitle.toLowerCase().split(' ').join('')}.json`;
-    
-    // test log
-    console.log(filename);
 
-    fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
+    JSON.stringify(data, null, '\t');
+
+    const filename = `${data.proTitle}_README.md`;
+
+
+// WHEN I click on the links in the Table of Contents
+// THEN I am taken to the corresponding section of the README
+
+    const content = `# ${data.proTitle}
+    \n## Table of Contents
+    \n[1. Description](#desc)
+    \n[2. Installation](#inst)
+    \n[3. Usage](#use)
+    \n[4. Contributing](#cont)
+    \n[5. Tests](#test)
+    \n[6. License](#lic)
+    \n[7. Questions?](#ques)
+    \n<br>
+    \n<a name="desc"></a>
+    \n## 1. Description
+    \n${data.description}
+    \n<a name="inst"></a>
+    \n## 2. Installation
+    \n${data.installation}
+    \n<a name="use"></a>
+    \n## 3. Usage
+    \n${data.usage}
+    \n<a name="cont"></a>
+    \n## 4. Contributing
+    \n${data.contributing}
+    \n<a name="test"></a>
+    \n## 5. Tests
+    \n${data.tests}
+    \n<a name="lic"></a>
+    \n## 6. License
+    \n${data.license}
+    \n<a name="ques"></a>
+    \n## 7. Questions
+    \nGitHub Username: ${data.githubUsername}
+    \nEmail: ${data.email}`;
+
+
+    fs.writeFile(filename, content, (err) =>
       err ? console.log(err) : console.log('Success!')
     );
-})
+});
