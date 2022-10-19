@@ -75,7 +75,9 @@ inquirer
     ])
 
 .then((data) => {
-    const filename = `${data.name.toLowerCase().split(' ').join('')}.json`;
+    const filename = `${data.proTitle.toLowerCase().split(' ').join('')}.json`;
+    
+    // test log
     console.log(filename);
 
     fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
