@@ -1,9 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-// GIVEN a command-line application that accepts user input
-// WHEN I am prompted for information about my application repository
-// THEN a high-quality, professional README.md is generated with the title of my project and sections entitled Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
 
 inquirer
     .prompt([
@@ -50,7 +47,7 @@ inquirer
             type: 'list',
             message: 'Choose a license for your project:',
             name: 'license',
-            choices: ['Apache 2.0', 'MIT', 'Eclipse 2.0', 'The Unlicense']
+            choices: ['Apache 2.0', 'MIT', 'Eclipse Public 1.0', 'Mozilla Public 2.0', 'The Unlicense']
         },
 
 // WHEN I enter my GitHub username
@@ -72,48 +69,60 @@ inquirer
 
     ])
 
-.then((data) => {
+.then((input) => {
 
-    JSON.stringify(data, null, '\t');
+    JSON.stringify(input, null, '\t');
 
-    const filename = `${data.proTitle}_README.md`;
-
+    const filename = `${input.proTitle}_README.md`;
 
 // WHEN I click on the links in the Table of Contents
 // THEN I am taken to the corresponding section of the README
 
-    const content = `# ${data.proTitle}
-    \n## Table of Contents
-    \n[1. Description](#desc)
-    \n[2. Installation](#inst)
-    \n[3. Usage](#use)
-    \n[4. Contributing](#cont)
-    \n[5. Tests](#test)
-    \n[6. License](#lic)
-    \n[7. Questions?](#ques)
+    var badgeIcon;
+    if (input.license === "Apache 2.0") {
+        badgeIcon = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
+    } else if (input.license === "MIT") {
+        badgeIcon = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+    } else if (input.license === "Eclipse Public 1.0") {
+        badgeIcon = `[![License](https://img.shields.io/badge/License-EPL_1.0-red.svg)](https://opensource.org/licenses/EPL-1.0)`
+    } else if (input.license === "Mozilla Public 2.0") {
+        badgeIcon = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`
+    } else if (input.license === "The Unlicense") {
+        badgeIcon = `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`
+    };
+
+    const content = `# ${input.proTitle}
+    \n${badgeIcon}
+    \n### Table of Contents
+    \n- [Description](#description)
+    \n- [Installation](#installation)
+    \n- [Usage](#usage)
+    \n- [Contributing](#contributing)
+    \n- [Tests](#tests)
+    \n- [License](#license)
+    \n- [Questions](#questions)
     \n<br>
-    \n<a name="desc"></a>
-    \n## 1. Description
-    \n${data.description}
-    \n<a name="inst"></a>
-    \n## 2. Installation
-    \n${data.installation}
-    \n<a name="use"></a>
-    \n## 3. Usage
-    \n${data.usage}
-    \n<a name="cont"></a>
-    \n## 4. Contributing
-    \n${data.contributing}
-    \n<a name="test"></a>
-    \n## 5. Tests
-    \n${data.tests}
-    \n<a name="lic"></a>
-    \n## 6. License
-    \n${data.license}
-    \n<a name="ques"></a>
-    \n## 7. Questions
-    \nGitHub Username: ${data.githubUsername}
-    \nEmail: ${data.email}`;
+    \n## Description
+    \n${input.description}
+    \n<br>
+    \n## Installation
+    \n${input.installation}
+    \n<br>
+    \n## Usage
+    \n${input.usage}
+    \n<br>
+    \n## Contributing
+    \n${input.contributing}
+    \n<br>
+    \n## Tests
+    \n${input.tests}
+    \n<br>
+    \n## License
+    \nThis application is covered by the ${input.license} license.
+    \n<br>
+    \n## Questions
+    \nFind me on GitHub by searching for ${input.githubUsername},
+    \nOr send me an email at ${input.email}`;
 
 
     fs.writeFile(filename, content, (err) =>
