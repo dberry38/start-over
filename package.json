@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/dberry38/start-over/issues"
   },
-  "homepage": "https://github.com/dberry38/start-over#readme"
+  "homepage": "https://github.com/dberry38/start-over#readme",
+  "dependencies": {
+    "inquirer": "^9.1.4"
+  }
 }
