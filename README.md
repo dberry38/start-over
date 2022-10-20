@@ -23,4 +23,5 @@ Refer to MIT license in repo
 
 ## Contact
 [GitHub repository page](https://github.com/dberry38/start-over)
+
 [Email](davidberry38@gmail.com)
