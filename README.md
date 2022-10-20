@@ -1,6 +1,5 @@
 # start-over
 
-<!-- descrioption, motivation, installasage, usage, screenage, creds, license,  -->
 ## Description
 This index.js file was written to work in node.js, and helps the user generate a readme file for their project with a CLI.
 
