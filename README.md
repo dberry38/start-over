@@ -10,7 +10,7 @@ To provide an efficient template for project readme markdown files.
 You must have node.js installed on your machine to execute this application in the terminal.
 
 ## Usage
-In your console, navigate to the 'start-over' directory. Initialize the application with "node index.js". Give input to all of the following prompts. When the console prints "Success!" your README is complete and waiting in the 'start-over' directory.
+In your console, navigate to the 'start-over' directory. Initialize the application with "node index.js". Give input to all of the following prompts. When the console prints "Success!" your README is complete and waiting in the 'output' folder.
 
 ## Example video
 ![demonstration](./assets/Module%209%20HW%20demonstration.gif)
