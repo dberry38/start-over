@@ -73,7 +73,7 @@ inquirer
 
     JSON.stringify(input, null, '\t');
 
-    const filename = `${input.proTitle}_README.md`;
+    const filename = `output/${input.proTitle}_README.md`;
 
 // WHEN I click on the links in the Table of Contents
 // THEN I am taken to the corresponding section of the README
